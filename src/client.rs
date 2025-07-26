@@ -279,6 +279,7 @@ where
         }
     }
 }
+
 impl<
         AC,
         AD,
@@ -338,6 +339,16 @@ where
     HasTokenUrl: EndpointState,
     HasUserInfoUrl: EndpointState,
 {
+    /// The JSON Web Key Set (JWKS) used for token verification.
+    pub fn jwks(&self) -> &JsonWebKeySet<K> {
+        &self.jwks
+    }
+
+    /// Update the JSON Web Key Set (JWKS) used for token verification.
+    pub fn update_jwks(&mut self, jwks: JsonWebKeySet<K>) {
+        self.jwks = jwks;
+    }
+
     /// Set the type of client authentication used for communicating with the authorization
     /// server.
     ///
